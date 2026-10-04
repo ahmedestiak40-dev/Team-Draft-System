@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Draft Management Software</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🏆 Team Draft Management Software </h1>
+
+  <div class="container">
+
+    <!-- Add Team -->
+    <div class="form-group">
+      <input type="text" id="teamName" placeholder="Enter Team Name">
+      <button onclick="addTeam()">Add Team</button>
+    </div>
+
+    <!-- Add Player -->
+    <div class="form-group">
+      <select id="teamSelect"></select>
+      <input type="text" id="playerName" placeholder="Enter Player Name">
+      <input type="file" id="playerAvatar" accept="image/*"> <!-- Player photo -->
+      <button onclick="addPlayer()">Add Player</button>
+    </div>
+
+    <!-- Draft & Reset & Export -->
+    <div class="form-group">
+      <button onclick="draftPlayersPreview()">🎯 Draft Preview</button>
+      <button onclick="resetDraft()">🔄 Reset Draft</button>
+      <button onclick="exportCSV()">💾 Export Teams</button>
+    </div>
+
+    <!-- Import CSV -->
+    <div class="form-group">
+      <input type="file" id="csvFile" accept=".csv">
+      <button onclick="importCSV()">📂 Import Teams</button>
+    </div>
+
+    <!-- Search Players -->
+    <div class="form-group">
+      <input type="text" id="searchPlayer" placeholder="🔍 Search Player" onkeyup="searchPlayer()">
+    </div>
+
+    <!-- Sort Teams & Players -->
+    <div class="form-group">
+      <button onclick="sortTeams()">⬆️ Sort Teams A-Z</button>
+      <button onclick="sortPlayers()">⬆️ Sort Players A-Z</button>
+    </div>
+
+    <!-- Team List -->
+    <div class="team-list" id="teamList"></div>
+  </div>
+
+  <!-- Draft Preview Modal -->
+  <div id="draftPreview" class="draft-preview">
+    <div class="draft-content">
+      <h2>Draft Preview</h2>
+      <div id="previewList"></div>
+      <button onclick="confirmDraft()">✅ Confirm Draft</button>
+      <button onclick="closePreview()">❌ Cancel</button>
+    </div>
+  </div>
+
+  <!-- Match Simulator -->
+  <div class="container">
+    <h2>🏟️ Match Simulator</h2>
+    <div class="form-group">
+      <select id="simTeam1"></select>
+      <select id="simTeam2"></select>
+      <button onclick="simulateMatch()">🎮 Simulate Match</button>
+    </div>
+    <div id="matchResult"></div>
+  </div>
+
+  <!-- Manual Match Recording -->
+  <div class="container">
+    <h2>📝 Add Match Manually</h2>
+    <div class="form-group">
+      <select id="manualTeam1"></select>
+      <input type="number" id="manualScore1" placeholder="Team 1 Score" min="0">
+    </div>
+    <div class="form-group">
+      <select id="manualTeam2"></select>
+      <input type="number" id="manualScore2" placeholder="Team 2 Score" min="0">
+    </div>
+    <div class="form-group">
+      <textarea id="manualPlayerPerformance" placeholder="Player Performance (e.g., PlayerName:Points, one per line)"></textarea>
+    </div>
+    <button onclick="addManualMatch()">➕ Add Match</button>
+  </div>
+
+  <!-- Match History -->
+  <div class="container">
+    <h2>📜 Match History</h2>
+    <div id="matchHistory"></div>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="container">
+    <h2>📊 Performance Charts</h2>
+    <canvas id="teamChart" height="150"></canvas>
+    <canvas id="topPlayersChart" height="150" style="margin-top:20px;"></canvas>
+  </div>
+
+  <!-- Include Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
